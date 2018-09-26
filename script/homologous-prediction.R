@@ -1,12 +1,9 @@
-<<<<<<< HEAD
 source("script/metrics.R")
-
 
 load.hg38.promSeq <- function() {
   e <- load(url("https://www.dropbox.com/s/4loicpp90g4lrk2/promSeqs-hg38.Rdata?raw=1"))
   return(eval(parse(text=e)))
 }
-
 
 # set database genome nomenclature
 
@@ -23,9 +20,7 @@ small = c("rRNA","snRNA","miRNA","snoRNA")
 
 datatab = NULL
 
-=======
-datatab=NULL
->>>>>>> parent of 383728c... update
+
 for (sp in species) {
   i1=sp[1]
   i2=sp[2]
@@ -37,22 +32,21 @@ for (sp in species) {
   o1 = ucsc.org[i1]
   o2 = ucsc.org[i2]
   
-  load(paste0("geneSeqs-",o1,".Rdata"))
+  load(paste0("data/geneSeqs-",o1,".Rdata"))
   gSeqs1 = geneSeqs
-  load(paste0("geneSeqs-",o2,".Rdata"))
+  load(paste0("data/geneSeqs-",o2,".Rdata"))
   gSeqs2 = geneSeqs
   
-  load(paste0("txSeqs-",o1,".Rdata"))
+  load(paste0("data/txSeqs-",o1,".Rdata"))
   txSeqs1 = txSeqs
-  load(paste0("txSeqs-",o2,".Rdata"))
+  load(paste0("data/txSeqs-",o2,".Rdata"))
   txSeqs2 = txSeqs
   
-  load(paste0("up1000Seqs-",o1,".Rdata"))
+  load(paste0("data/up1000Seqs-",o1,".Rdata"))
   upSeqs1 = upSeqs
-  load(paste0("up1000Seqs-",o2,".Rdata"))
+  load(paste0("data/up1000Seqs-",o2,".Rdata"))
   upSeqs2 = upSeqs
   
-<<<<<<< HEAD
   if(o1 == "hg38") {
     promSeqs1 = load.hg38.promSeq()
   } else {
@@ -60,17 +54,14 @@ for (sp in species) {
     promSeqs1 = promSeqs
   }
   load(paste0("data/promSeqs-",o2,".Rdata"))
-=======
-  load(paste0("promSeqs-",o1,".Rdata"))
-  promSeqs1 = promSeqs
+  
   load(paste0("promSeqs-",o2,".Rdata"))
->>>>>>> parent of 383728c... update
   promSeqs2 = promSeqs
   
   # Load transcript classes data
-  load(paste0("txClass-",o1,".Rdata"))
+  load(paste0("data/txClass-",o1,".Rdata"))
   txClass1 = txClass
-  load(paste0("txClass-",o2,".Rdata"))
+  load(paste0("data/txClass-",o2,".Rdata"))
   txClass2 = txClass
   
   # Only longs and existing seq
@@ -80,12 +71,12 @@ for (sp in species) {
   txClass2 = txClass2[txClass2$TXNAME %in% names(txSeqs2),]
   
   # Load S1 - S2 Long coding ortho
-  oracle = read.csv2(paste0(i1,"-",i2,"-long-ortho.csv"),stringsAsFactors = FALSE)
+  oracle = read.csv2(paste0("data/",i1,"-",i2,"-long-ortho.csv"),stringsAsFactors = FALSE)
   oracle = oracle[oracle$O2ENSID %in% names(gSeqs2),]
   oracle = oracle[oracle$O1ENSID %in% names(gSeqs1),]
   
   # Substitution Matrix 
-  file = "NUC.4.4"
+  file = "data/NUC.4.4"
   mat = as.matrix(read.table(file, check.names=FALSE))
   tipo = "local"
   gapo = 10
