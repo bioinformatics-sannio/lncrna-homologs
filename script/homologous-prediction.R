@@ -1,4 +1,31 @@
+<<<<<<< HEAD
+source("script/metrics.R")
+
+
+load.hg38.promSeq <- function() {
+  e <- load(url("https://www.dropbox.com/s/4loicpp90g4lrk2/promSeqs-hg38.Rdata?raw=1"))
+  return(eval(parse(text=e)))
+}
+
+
+# set database genome nomenclature
+
+ens.org = c("hsapiens_gene_ensembl","drerio_gene_ensembl", "mmusculus_gene_ensembl")
+names(ens.org) = c("Human","Zebrafish","Mouse")
+ucsc.org = c("hg38","danRer10","mm10")
+names(ucsc.org) = names(ens.org)
+
+species = list(HM=c("Human","Mouse"),MZ=c("Mouse","Zebrafish"),HZ=c("Human","Zebrafish"))
+
+# define tx classes
+longclass = c("lincRNA","sense_intronic","sense_overlapping","antisense")
+small = c("rRNA","snRNA","miRNA","snoRNA")
+
+datatab = NULL
+
+=======
 datatab=NULL
+>>>>>>> parent of 383728c... update
 for (sp in species) {
   i1=sp[1]
   i2=sp[2]
@@ -25,9 +52,19 @@ for (sp in species) {
   load(paste0("up1000Seqs-",o2,".Rdata"))
   upSeqs2 = upSeqs
   
+<<<<<<< HEAD
+  if(o1 == "hg38") {
+    promSeqs1 = load.hg38.promSeq()
+  } else {
+    load(paste0("data/promSeqs-",o1,".Rdata"))
+    promSeqs1 = promSeqs
+  }
+  load(paste0("data/promSeqs-",o2,".Rdata"))
+=======
   load(paste0("promSeqs-",o1,".Rdata"))
   promSeqs1 = promSeqs
   load(paste0("promSeqs-",o2,".Rdata"))
+>>>>>>> parent of 383728c... update
   promSeqs2 = promSeqs
   
   # Load transcript classes data
