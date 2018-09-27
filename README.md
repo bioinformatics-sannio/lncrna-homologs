@@ -2,7 +2,7 @@
 datasets and scripts adopted in the paper "Detection of long non-coding RNA homology, a comparative study on alignment and alignment-free metrics"
 
 
-# Please install the following Python package and C++ source before proceeding:
+## Please install the following Python package and C++ source before proceeding:
  - decaf+py from http://bioinformatics.org.au/tools/decaf+py/
  - kmacs from http://kmacs.gobics.de/
 
